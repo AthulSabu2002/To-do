@@ -39,7 +39,7 @@ Welcome to the To-Do App! This is a simple and beautiful application to manage y
     npm start
     ```
 
-2. Start the frontend server:
+2. Start the frontend (react):
 
     ```bash
     npm run dev
