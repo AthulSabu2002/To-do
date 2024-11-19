@@ -26,9 +26,25 @@ router.get('/', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
   try {
-    const updatedTodo = await Todo.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    res.json(updatedTodo);
+    console.log(`Received PUT request for ${req.params.id} with body:`, req.body);
+    const todo = await Todo.findById(req.params.id);
+    if (todo) {
+      console.log('Found todo:', todo);
+      if (req.body.text !== undefined) {
+        todo.text = req.body.text;
+      }
+      if (req.body.completed !== undefined) {
+        todo.completed = Boolean(req.body.completed);
+      }
+      const updatedTodo = await todo.save();
+      console.log('Updated todo:', updatedTodo);
+      res.json(updatedTodo);
+    } else {
+      console.log('Todo not found');
+      res.status(404).json({ message: 'Todo not found' });
+    }
   } catch (err) {
+    console.log('Error:', err.message);
     res.status(500).json({ message: err.message });
   }
 });
@@ -44,6 +60,7 @@ router.delete('/:id', async (req, res) => {
 
 router.post('/deleteMany', async (req, res) => {
   try {
+    console.log('Found todo:');
     await Todo.deleteMany({ _id: { $in: req.body.ids } });
     res.json({ message: 'Todos deleted' });
   } catch (err) {
