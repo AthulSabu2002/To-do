@@ -1,15 +1,15 @@
 # To-Do App
 
-Welcome to the To-Do App! This is a simple and beautiful application to manage your daily tasks.
+Welcome to the To-Do Web App! This is a simple and beautiful web application to manage your daily tasks.
 
 ## Features
 
 - Add new tasks
 - Update tasks
 - View all tasks
-- Delete tasks
+- Complete tasks
+- Delete multiple tasks
 - Responsive design
-
 
 ## Installation
 
@@ -19,16 +19,39 @@ Welcome to the To-Do App! This is a simple and beautiful application to manage y
     git clone https://github.com/AthulSabu2002/To-do.git
     ```
 
-2. Navigate to the project directory:
+2. Navigate to the project directories and install dependencies:
 
     ```bash
-    cd to-do
+    cd to-do/frontend
+    npm install
+    cd ../server
+    npm install
     ```
 
-3. Install the dependencies:
+3. Create a `.env` file in the `server` directory for the server and add your environment variables:
 
     ```bash
-    npm install
+    touch .env
+    ```
+
+    Example `.env` file:
+
+    ```env
+    PORT=5000
+    MONGODB_URI=your_mongodb_uri
+    ```
+
+4. Create a `.env` file in the `frontend` directory for the frontend and add your environment variables:
+
+    ```bash
+    cd frontend
+    touch .env
+    ```
+
+    Example `.env` file:
+
+    ```env
+    VITE_REACT_APP_BASE_URL=http://localhost:5000
     ```
 
 ## Usage
@@ -36,12 +59,14 @@ Welcome to the To-Do App! This is a simple and beautiful application to manage y
 1. Start the server:
 
     ```bash
+    cd server
     npm start
     ```
 
 2. Start the frontend (react):
 
     ```bash
+    cd frontend
     npm run dev
     ```
 
@@ -57,9 +82,6 @@ Welcome to the To-Do App! This is a simple and beautiful application to manage y
 
 Contributions are welcome! Please fork the repository and submit a pull request.
 
-## License
-
-This project is licensed under the MIT License.
 
 ## Contact
 
